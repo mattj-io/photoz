@@ -24,8 +24,7 @@ var libraryURL: URL!
 
 enum DirType: Int {
     case Album
-    case YearMonth
-    case YearMonthDay
+    case Year
     case Unknown
 }
 
@@ -61,7 +60,6 @@ if CommandLine.arguments.count == 3 {
 
     generateAllHashes()
     organizeLibrary()
-    cleanupLibrary()
 
     exit(EXIT_SUCCESS)
 }

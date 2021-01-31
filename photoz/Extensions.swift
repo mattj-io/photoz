@@ -15,24 +15,15 @@ extension URL {
         guard exists && isDir.boolValue else { return false }
         
         let lastComponent = self.lastPathComponent
-        return lastComponent.range(of: #"^[0-9]{4}-[0-9]{2}\s+.*$"#, options: .regularExpression) != nil
+        return lastComponent.range(of: #"^[A-Za-z]+.*$"#, options: .regularExpression) != nil
     }
-
-    var isYearMonthFolder: Bool {
+    
+    var isYearFolder: Bool {
         var isDir: ObjCBool = false
         let exists = FileManager.default.fileExists(atPath: self.path, isDirectory: &isDir)
         guard exists && isDir.boolValue else { return false }
 
         let lastComponent = self.lastPathComponent
-        return lastComponent.range(of: #"^[0-9]{4}-[0-9]{2}$"#, options: .regularExpression) != nil
-    }
-
-    var isYearMonthDayFolder: Bool {
-        var isDir: ObjCBool = false
-        let exists = FileManager.default.fileExists(atPath: self.path, isDirectory: &isDir)
-        guard exists && isDir.boolValue else { return false }
-
-        let lastComponent = self.lastPathComponent
-        return lastComponent.range(of: #"^[0-9]{4}-[0-9]{2}-[0-9]{2}"#, options: .regularExpression) != nil
+        return lastComponent.range(of: #"^Photos\s+from\s+[0-9]{4}"#, options: .regularExpression) != nil
     }
 }
